@@ -38,6 +38,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   shared_preferences: ^2.3.2
   provider: ^6.1.2
+  flutter_map: ^7.0.2
+
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +83,14 @@ flutter:
      - family: Yuan
        fonts:
          - asset: lib/common/wordtype/MaoKenWangXingYuan-2.ttf
+
+     - family: Ke
+       fonts:
+         - asset: lib/common/wordtype/KeYanKeTianKeAiTi-2.ttf
+
+     - family: HY
+       fonts:
+         - asset: lib/common/wordtype/HYPixel11pxU-2.ttf
 
 
   #   - family: Trajan Pro

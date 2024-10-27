@@ -4,6 +4,7 @@ import 'view/home_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled5/common/public_provider.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -20,9 +21,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(393, 852),
-      child: MaterialApp(
-        theme: ThemeData(),
-        home: MyHomePage(),
+      child: ChangeNotifierProvider(
+        create: (context) => PublicProvider(),
+        child: MaterialApp(
+          theme: ThemeData(
+            primaryColor: Colors.greenAccent,
+            highlightColor: Color.fromRGBO(0, 0, 0, 0),
+            splashColor: Color.fromRGBO(0, 0, 0, 0)
+          ),
+          home: MyHomePage(),
+        ),
       ),
     );
   }

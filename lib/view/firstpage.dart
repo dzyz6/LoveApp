@@ -1,19 +1,25 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled5/common/public_provider.dart';
 
-
-String backimage='lib/common/image/cloud.jpeg';
-class Firstpage extends StatelessWidget {
+class Firstpage extends StatefulWidget {
   const Firstpage({super.key});
 
   @override
+  State<Firstpage> createState() => _FirstpageState();
+}
+
+class _FirstpageState extends State<Firstpage> {
+  @override
+  String backimage = 'lib/common/image/cloud.jpeg';
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.black,
         image: DecorationImage(
-            image: AssetImage(backimage),
+            image: AssetImage(Provider.of<PublicProvider>(context).backimage),
             fit: BoxFit.cover),
       ),
       child: SafeArea(
@@ -22,16 +28,12 @@ class Firstpage extends StatelessWidget {
             CustomAppBar(),
             Spacer(),
             BottomSliver(),
-
-
           ],
         ),
       ),
     );
   }
 }
-
-
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -53,7 +55,15 @@ class LoveTime extends StatelessWidget {
 
   final startDate = DateTime(2022, 11, 1);
   final endDate = DateTime.now();
+  final mDate = DateTime.now().month < 1 && DateTime.now().day < 11
+      ? DateTime(DateTime.now().year, 1, 11)
+      : DateTime(DateTime.now().year + 1, 1, 11);
+  final cDate = DateTime.now().month < 5 && DateTime.now().day < 5
+      ? DateTime(DateTime.now().year, 5, 5)
+      : DateTime(DateTime.now().year + 1, 5, 5);
   late final days = endDate.difference(startDate).inDays + 1;
+  late final mdays = mDate.difference(endDate).inDays + 1;
+  late final cdays = cDate.difference(endDate).inDays + 1;
 
   @override
   Widget build(BuildContext context) {
@@ -114,23 +124,53 @@ class LoveTime extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
-                          backgroundImage: AssetImage('lib/common/image/headimg1.jpg'),
-                          radius: 23,
+                        GestureDetector(
+                          onTap: () => showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Center(
+                                      child: Text(
+                                    "距离他的生日还有$cdays天",
+                                    style: TextStyle(fontFamily: 'yuan'),
+                                  )),
+                                  backgroundColor: Color(0xFFEED8AE),
+                                );
+                              }),
+                          child: CircleAvatar(
+                            backgroundImage:
+                                AssetImage('lib/common/image/headimg1.jpg'),
+                            radius: 23,
+                          ),
                         ),
                         SizedBox(
                           width: 5.w,
                         ),
-                        CircleAvatar(
-                          radius: 23,
-                          backgroundImage: AssetImage('lib/common/image/headimg2.jpg'),
+                        GestureDetector(
+                          onTap: () => showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Center(
+                                      child: Text(
+                                    "距离她的生日还有$mdays天",
+                                    style: TextStyle(fontFamily: 'yuan'),
+                                  )),
+                                  backgroundColor: Color(0xFFEED8AE),
+                                );
+                              }),
+                          child: CircleAvatar(
+                            radius: 23,
+                            backgroundImage:
+                                AssetImage('lib/common/image/headimg2.jpg'),
+                          ),
                         )
                       ],
                     ),
                     Transform(
                         transform:
-                        Transform.translate(offset: const Offset(0, 7))
-                            .transform,
+                            Transform.translate(offset: const Offset(0, 7))
+                                .transform,
                         child: BeatingHeart(
                           duration: Duration(milliseconds: 800),
                         ))
@@ -173,7 +213,7 @@ class _BeatingHeartState extends State<BeatingHeart>
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      curve: Curves.easeInOut,
+      curve: Curves.bounceInOut,
       opacity: show ? 1 : 0.4,
       onEnd: () async {
         if (show) {
@@ -186,7 +226,7 @@ class _BeatingHeartState extends State<BeatingHeart>
       duration: widget.duration,
       child: const Icon(
         Icons.favorite,
-        shadows: [Shadow(color: Colors.black,blurRadius: 5)],
+        shadows: [Shadow(color: Colors.black, blurRadius: 5)],
         color: Color(0xFFECAD9E),
       ),
     );
@@ -218,6 +258,8 @@ class _ActionMoreState extends State<ActionMore>
           isz = !isz;
         }
 
+        Provider.of<PublicProvider>(context, listen: false)
+            .changeimage('lib/common/image/cloud.jpeg');
       },
       child: RotationTransition(
         alignment: Alignment.center,
@@ -234,12 +276,8 @@ class _ActionMoreState extends State<ActionMore>
         ),
       ),
     );
-
-
-
   }
 }
-
 
 class BottomSliver extends StatefulWidget {
   const BottomSliver({super.key});
@@ -249,31 +287,85 @@ class BottomSliver extends StatefulWidget {
 }
 
 class _BottomSliverState extends State<BottomSliver> {
-
+  bool _offstage=false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onVerticalDragStart: (detail){
-        showModalBottomSheet(context: context, builder: (builder){
-          return Container(
-            child: Text("Asfddddddddddd"),
-          );
-        },);
-      },
-      child: Padding(
-        padding: EdgeInsets.all(20.w),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r),topRight:Radius.circular(10.r) ,bottomLeft:Radius.circular(10.r) ,bottomRight: Radius.circular(10.r)),
-          child: Opacity(
-            opacity: 0.8,
-            child: Container(
-              width: 250.h,
-                height: 5.w,
-                color: Colors.black87,
+        behavior: HitTestBehavior.opaque,
+        onVerticalDragUpdate: (detail) async{
+          setState(() {
+            _offstage=true;
+          });
+          await showModalBottomSheet(
+              barrierColor:Colors.black38,
+            constraints: BoxConstraints(minHeight: 50.w),
+            context: context,
+            builder: (context) {
+              return Container(
+                height: 265.w,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(bottom: 10.w),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.r),
+                            topRight: Radius.circular(10.r),
+                            bottomLeft: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r)),
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Container(
+                            width: 250.h,
+                            height: 5.w,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20.r),
+                              topLeft: Radius.circular(20.r))),
+
+                      height: 250.w,
+                      width: double.infinity,
+
+                    ),
+                  ],
                 ),
+              );
+            },
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),),
+            isScrollControlled: true,
+          );
+          setState(() {
+            _offstage=false;
+          });
+        },
+        child: Offstage(
+          offstage: _offstage,
+          child: Padding(
+            padding: EdgeInsets.only(top: 40.w,bottom: 15.w),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.r),
+                  topRight: Radius.circular(10.r),
+                  bottomLeft: Radius.circular(10.r),
+                  bottomRight: Radius.circular(10.r)),
+              child: Opacity(
+                opacity: 0.8,
+                child: Container(
+                  width: 250.h,
+                  height: 5.w,
+                  color: Colors.black87,
+                ),
+              ),
+            ),
           ),
-        ),
-      ));
+        ));
   }
 }

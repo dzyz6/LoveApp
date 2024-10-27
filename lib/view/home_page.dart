@@ -39,10 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-
-
-
-
 class BottomTap extends StatefulWidget {
   const BottomTap({super.key});
 
@@ -71,7 +67,9 @@ class _BottomTapState extends State<BottomTap> {
 
       ),
       child: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
+          enableFeedback:true,
+        elevation: 0,
+        backgroundColor: Colors.white,
         currentIndex: currentIndex,
           unselectedItemColor:Colors.grey,
           type: BottomNavigationBarType.shifting,
@@ -79,7 +77,7 @@ class _BottomTapState extends State<BottomTap> {
           onTap: _ontap,
           items:[
             BottomNavigationBarItem(icon: Icon(Icons.share_location),label:'我们' ),
-            BottomNavigationBarItem(icon: Icon(Icons.add),label: '悄悄话'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat,size: 20.w),label: '悄悄话'),
             BottomNavigationBarItem(icon: Icon(Icons.photo,size: 20.w,),label: '情侣相册',),
           ] ),
     );
