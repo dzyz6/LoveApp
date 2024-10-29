@@ -16,7 +16,8 @@ class _SecondpageState extends State<Secondpage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Color(0xFFE6E6FA),Color(0xFFF5F5FF),],begin: Alignment.topCenter,end: Alignment.bottomCenter,stops: [0.8,1])
+          // gradient: LinearGradient(colors: [Color(0xFFE6E6Ea),Color(0xFFF5F5FF),],begin: Alignment.topCenter,end: Alignment.bottomCenter,stops: [0.8,1])
+        color: Color(0xFFF0F0F0)
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

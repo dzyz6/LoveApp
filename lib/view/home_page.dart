@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled5/common/color.dart';
 import 'package:untitled5/common/size.dart';
 import 'package:untitled5/view/firstpage.dart';
+import 'package:untitled5/view/scrollpage.dart';
 import 'package:untitled5/view/thirdpage.dart';
 
 import 'secondpage.dart';
 
 PageController pageController=PageController(initialPage: 0);
+PageController firstpageController=PageController();
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -24,14 +27,33 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: pageController,
-        children: [
-          Firstpage(),
-          Secondpage(),
-          Thirdpage(),
-        ],
+      body:PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (bool didPop,result){
+          SystemNavigator.pop();
+        },
+        child: PageView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: [
+            // PageView(
+            //   scrollDirection: Axis.vertical,
+            //   controller: firstpageController,
+            //   children: [
+            //     Stack(
+            //       children: [
+                    Firstpage(),
+            //
+            //       ],
+            //     ),
+            //     Scrollpage(),
+            //
+            //   ],
+            // ),
+            Secondpage(),
+            Thirdpage(),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomTap(),
     );

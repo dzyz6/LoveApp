@@ -26,6 +26,7 @@ class _FirstpageState extends State<Firstpage> {
         child: Column(
           children: [
             CustomAppBar(),
+            Time(),
             Spacer(),
             BottomSliver(),
           ],
@@ -34,6 +35,25 @@ class _FirstpageState extends State<Firstpage> {
     );
   }
 }
+
+class Time extends StatelessWidget {
+  const Time({super.key});
+
+  @override
+
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 10.h),
+        Icon(Icons.access_time_sharp,color: Colors.white,size: 17.w,),
+        SizedBox(width: 5.h),
+        DateTime.now().hour>23||DateTime.now().hour<3?Text('٩(๑`^´๑)۶ 该睡觉了',style: TextStyle(color: Colors.white,),):
+        DateTime.now().hour>6&&DateTime.now().hour<10?Text('(๑¯ω¯๑) 一日之计在于晨',style: TextStyle(color: Colors.white,),):Text('٩(๑˃̵ᴗ˂̵๑)۶ 开心每一天',style: TextStyle(color: Colors.white),),
+      ],
+    );
+  }
+}
+
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
