@@ -43,10 +43,15 @@ class Loginpage extends StatelessWidget {
                       content: Container(
                         height: 70.w,
                         width: 100.h,
-                        child: Center(
-                          child: Text(
-                            '才不信',
-                            style: TextStyle(fontSize: 30.w, fontFamily: 'KE'),
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).pop();
+                          },
+                          child: Center(
+                            child: Text(
+                              '才不信',
+                              style: TextStyle(fontSize: 30.w, fontFamily: 'KE'),
+                            ),
                           ),
                         ),
                         decoration: BoxDecoration(
