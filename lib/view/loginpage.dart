@@ -47,6 +47,7 @@ class Loginpage extends StatelessWidget {
                           onTap: (){
                             Navigator.of(context).pop();
                           },
+                          behavior:HitTestBehavior.opaque ,
                           child: Center(
                             child: Text(
                               '才不信',
