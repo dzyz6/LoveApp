@@ -371,8 +371,10 @@ class _BottomSliverState extends State<BottomSliver> {
                       height: 440.w,
                       width: double.infinity,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Quan(
                                   img: 'lib/common/dogimg/OIP-C (2).jpg',
@@ -385,6 +387,7 @@ class _BottomSliverState extends State<BottomSliver> {
                             ],
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Quan(
                                   img: 'lib/common/dogimg/OIP-C (1).jpg',
@@ -398,6 +401,7 @@ class _BottomSliverState extends State<BottomSliver> {
                             ],
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Quan(
                                   img: 'lib/common/dogimg/OIP-C (3).jpg',
@@ -519,7 +523,7 @@ class _QuanState extends State<Quan> {
                 });
           },
           child: Container(
-            margin: EdgeInsets.only(top: 13.w, left: 10.h, right: 10.h),
+
             width: 175.h,
             height: 130.w,
             decoration: BoxDecoration(
