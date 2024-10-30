@@ -40,20 +40,38 @@ class Time extends StatelessWidget {
   const Time({super.key});
 
   @override
-
   Widget build(BuildContext context) {
     return Row(
       children: [
         SizedBox(width: 10.h),
-        Icon(Icons.access_time_sharp,color: Colors.white,size: 17.w,),
+        Icon(
+          Icons.access_time_sharp,
+          color: Colors.white,
+          size: 17.w,
+        ),
         SizedBox(width: 5.h),
-        DateTime.now().hour>23||DateTime.now().hour<3?Text('٩(๑`^´๑)۶ 该睡觉了',style: TextStyle(color: Colors.white,),):
-        DateTime.now().hour>6&&DateTime.now().hour<10?Text('(๑¯ω¯๑) 一日之计在于晨',style: TextStyle(color: Colors.white,),):Text('٩(๑˃̵ᴗ˂̵๑)۶ 开心每一天',style: TextStyle(color: Colors.white),),
+        DateTime.now().hour > 23 || DateTime.now().hour < 3
+            ? Text(
+                '٩(๑`^´๑)۶ 该睡觉了',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              )
+            : DateTime.now().hour > 6 && DateTime.now().hour < 10
+                ? Text(
+                    '(๑¯ω¯๑) 一日之计在于晨',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
+                : Text(
+                    '٩(๑˃̵ᴗ˂̵๑)۶ 开心每一天',
+                    style: TextStyle(color: Colors.white),
+                  ),
       ],
     );
   }
 }
-
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -307,26 +325,27 @@ class BottomSliver extends StatefulWidget {
 }
 
 class _BottomSliverState extends State<BottomSliver> {
-  bool _offstage=false;
+  bool _offstage = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onVerticalDragUpdate: (detail) async{
+        onVerticalDragUpdate: (detail) async {
           setState(() {
-            _offstage=true;
+            _offstage = true;
           });
           await showModalBottomSheet(
-              barrierColor:Colors.black38,
+            barrierColor: Colors.black38,
             constraints: BoxConstraints(minHeight: 50.w),
             context: context,
             builder: (context) {
               return Container(
-                height: 265.w,
+                height: 455.w,
                 child: Column(
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(bottom: 10.w),
+                      padding: EdgeInsets.only(bottom: 10.w),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10.r),
@@ -345,31 +364,72 @@ class _BottomSliverState extends State<BottomSliver> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Color(0xFFE5E5E5),
                           borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20.r),
-                              topLeft: Radius.circular(20.r))),
-
-                      height: 250.w,
+                              topRight: Radius.circular(10.r),
+                              topLeft: Radius.circular(10.r))),
+                      height: 440.w,
                       width: double.infinity,
-
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Quan(
+                                  img: 'lib/common/dogimg/OIP-C (2).jpg',
+                                  title: '和好券',
+                                  content: '和好！'),
+                              Quan(
+                                  img: 'lib/common/dogimg/OIP-C.jpg',
+                                  title: '美食券',
+                                  content: '一起去吃吧'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Quan(
+                                  img: 'lib/common/dogimg/OIP-C (1).jpg',
+                                  title: '啵啵券',
+                                  content: '亲亲！'),
+                              Quan(
+                                  img:
+                                      'lib/common/dogimg/aea9cb4313162725fd51afbb7ee4ea477b7ad87f123c7-3LKX50_fw658.webp',
+                                  title: '永远爱宝券',
+                                  content: '永远爱宝'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Quan(
+                                  img: 'lib/common/dogimg/OIP-C (3).jpg',
+                                  title: '贴贴券',
+                                  content: '和宝贴贴❤'),
+                              Quan(
+                                  img: 'lib/common/dogimg/OIP-C (5).jpg',
+                                  title: '拍照券',
+                                  content: '拍张美美的照片'),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               );
             },
             backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+            ),
             isScrollControlled: true,
           );
           setState(() {
-            _offstage=false;
+            _offstage = false;
           });
         },
         child: Offstage(
           offstage: _offstage,
           child: Padding(
-            padding: EdgeInsets.only(top: 40.w,bottom: 15.w),
+            padding: EdgeInsets.only(top: 40.w, bottom: 15.w),
             child: ClipRRect(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.r),
@@ -389,3 +449,165 @@ class _BottomSliverState extends State<BottomSliver> {
         ));
   }
 }
+
+class Quan extends StatefulWidget {
+  Quan({
+    super.key,
+    required this.img,
+    required this.title,
+    required this.content,
+  });
+
+  String img;
+  String title;
+  String content;
+
+  @override
+  State<Quan> createState() =>
+      _QuanState(img: img, title: title, content: content);
+}
+
+class _QuanState extends State<Quan> {
+  String img;
+  String title;
+  String content;
+
+  _QuanState({required this.img, required this.content, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                      backgroundColor: Colors.transparent,
+                      content: Container(
+                        padding: EdgeInsets.all(10.w),
+                        height: 200.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(30.r)),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20.w,),
+                            Container(
+                              width: 200.h,
+                              height: 100.w,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(img),
+                                    fit: BoxFit.contain,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(5.r),
+                                      topRight: Radius.circular(5.r))),
+                            ),
+                            SizedBox(height: 20.w,),
+                            Center(
+                                child: Text(
+                              '使用$title成功，截图告诉他吧',
+                              style: TextStyle(fontSize: 15.w,fontFamily: 'Ke'),
+                            )),
+                          ],
+                        ),
+                      ));
+                });
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 13.w, left: 10.h, right: 10.h),
+            width: 175.h,
+            height: 130.w,
+            decoration: BoxDecoration(
+                border: new Border.all(color: Color(0xFF000000), width: 0.05.h),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(5.r))),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 175.h,
+                  height: 85.w,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(img),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5.r),
+                          topRight: Radius.circular(5.r))),
+                ),
+                SizedBox(
+                  height: 2.w,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5.h,
+                    ),
+                    Container(
+                      height: 22.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5.r))),
+                      child: Text(
+                        '${title}',
+                        style: TextStyle(fontSize: 16.w),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 2.w,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5.h,
+                    ),
+                    Container(
+                      height: 13.w,
+                      padding: EdgeInsets.only(
+                        left: 2.h,
+                        right: 2.h,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Color(0xffa18a6c),
+                          borderRadius: BorderRadius.all(Radius.circular(2.r))),
+                      child: Text(
+                        '$content',
+                        style: TextStyle(fontSize: 8.w, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: 13.w,
+          left: 10.h,
+          child: Container(
+            child: Text(
+              "∞次使用",
+              style: TextStyle(color: Colors.white, fontSize: 10.w),
+            ),
+            width: 47.h,
+            height: 20.w,
+            padding: EdgeInsets.all(2.w),
+            decoration: BoxDecoration(
+                color: Colors.black87,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5.r),
+                    bottomRight: Radius.circular(5.r))),
+          ),
+        )
+      ],
+    );
+  }
+}
+//

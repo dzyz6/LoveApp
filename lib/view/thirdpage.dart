@@ -16,12 +16,13 @@ class _ThirdpageState extends State<Thirdpage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-         gradient: LinearGradient(colors:[Color(0xFFD2B48C),Color(0xFFFDE9C9),] ,begin: Alignment.bottomCenter,end: Alignment.topCenter)
+         gradient: LinearGradient(colors:[Color(0xFFFDE9C1),Color(0xFFFDE9Cc),] ,begin: Alignment.bottomCenter,end: Alignment.topCenter)
       ),
       child: Scaffold(
         appBar: AppBar(
           title: Center(child: Text('我们的相册',style: TextStyle(fontFamily: "Ke",fontSize: 35.w),)),
           backgroundColor: Colors.transparent,
+            automaticallyImplyLeading:false,
         ),
         backgroundColor: Colors.transparent,
 
