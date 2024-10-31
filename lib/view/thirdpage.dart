@@ -16,7 +16,8 @@ class _ThirdpageState extends State<Thirdpage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-         gradient: LinearGradient(colors:[Color(0xFFFDE9C1),Color(0xFFFDE9Cc),] ,begin: Alignment.bottomCenter,end: Alignment.topCenter)
+         // gradient: LinearGradient(colors:[Color(0xFFFDE9C1),Color(0xFFFDE9Cc),] ,begin: Alignment.bottomCenter,end: Alignment.topCenter)
+          color: Color(0xFFF6F6F6)
       ),
       child: Scaffold(
         appBar: AppBar(
@@ -65,8 +66,8 @@ class _BodyContentState extends State<BodyContent> {
                         _list=0;
                     });
                   }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
-                top: 110.w,
-                left: 70.h,
+                top: 105.w,
+                left:80.h,
               ),///独山子
               Positioned(
                 child: SizedBox(
@@ -78,7 +79,7 @@ class _BodyContentState extends State<BodyContent> {
                   });
                 }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
                 top: 260.w,
-                left: 257.h,
+                left: 268.h,
               ),///长沙
               Positioned(
                 child: SizedBox(width:20.h,height:20.w,child: IconButton(onPressed: (){
@@ -87,8 +88,8 @@ class _BodyContentState extends State<BodyContent> {
                     _list=2;
                   });
                 }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
-                top: 232.w,
-                left: 245.h,
+                top: 235.w,
+                left: 255.h,
               ),///宜昌
               Positioned(
                 child: SizedBox(width:20.h,height:20.w,child: IconButton(onPressed: (){
@@ -97,8 +98,8 @@ class _BodyContentState extends State<BodyContent> {
                     _list=3;
                   });
                 }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
-                top: 155.w,
-                left: 280.h,
+                top: 153.w,
+                left: 293.h,
               ),///天津
               Positioned(
                 child: SizedBox(width:20.h,height:20.w,child: IconButton(onPressed: (){
@@ -108,7 +109,7 @@ class _BodyContentState extends State<BodyContent> {
                   });
                 }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
                 top: 203.w,
-                left: 223.h,
+                left: 235.h,
               ),///西安
               Positioned(
                 child: SizedBox(width:20.h,height:20.w,child: IconButton(onPressed: (){
@@ -117,8 +118,8 @@ class _BodyContentState extends State<BodyContent> {
                     _list=5;
                   });
                 }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
-                top: 252.w,
-                left: 240.h,
+                top: 255.w,
+                left: 250.h,
               ),///张家界
             ],
           ),
@@ -216,7 +217,8 @@ class BoxImg extends StatelessWidget {
         Center(
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white70,
+                  border: Border.all(color: Colors.black, width: 0.05.w,),
+                color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20.r))
             ),
             width: 270.h,

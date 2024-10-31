@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'addimage.dart';
 
@@ -11,13 +12,29 @@ class Secondpage extends StatefulWidget {
 }
 
 class _SecondpageState extends State<Secondpage> {
-  
   @override
+
+   var list;
+  Future _content() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    list =prefs.getStringList('list')!;
+    print(prefs.getStringList('list'));
+    print(list);
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    _content();
+    
+  }
+
+  
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           // gradient: LinearGradient(colors: [Color(0xFFE6E6Ea),Color(0xFFF5F5FF),],begin: Alignment.topCenter,end: Alignment.bottomCenter,stops: [0.8,1])
-        color: Color(0xFFF0F0F0)
+          color: Color(0xFFF6F6F6)
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -28,6 +45,9 @@ class _SecondpageState extends State<Secondpage> {
         body: Column(
           children: [
             Bar(),
+            FutureBuilder(future: _content(), builder: (context,snapshot){
+              return Text('${list[0]}');
+            })
           ],
         ),
       ),
@@ -66,3 +86,7 @@ class Bar extends StatelessWidget {
     );
   }
 }
+
+
+
+

@@ -336,7 +336,7 @@ class _BottomSliverState extends State<BottomSliver> {
             _offstage = true;
           });
           await showModalBottomSheet(
-            barrierColor: Colors.black38,
+            barrierColor: Colors.black26,
             constraints: BoxConstraints(minHeight: 50.w),
             context: context,
             builder: (context) {
@@ -593,8 +593,7 @@ class _QuanState extends State<Quan> {
           ),
         ),
         Positioned(
-          top: 13.w,
-          left: 10.h,
+
           child: Container(
             child: Text(
               "∞次使用",

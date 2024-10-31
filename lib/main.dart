@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(393, 852),
+      designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
       child: ChangeNotifierProvider(
         create: (context) => PublicProvider(),
         child: MaterialApp(

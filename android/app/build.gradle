@@ -4,6 +4,8 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -23,6 +25,9 @@ if (flutterVersionName == null) {
 }
 
 android {
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     namespace "com.example.untitled5"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion

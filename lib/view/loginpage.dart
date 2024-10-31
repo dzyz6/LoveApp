@@ -83,6 +83,7 @@ class Loginpage extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
+                  LogInNumber(2);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => MyHomePage()));
                 },
