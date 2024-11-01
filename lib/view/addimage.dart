@@ -18,7 +18,6 @@ class _AddimageState extends State<Addimage> {
   Future _settext() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('list', list);
-    print(prefs.getStringList('list'));
   }
 
   Future _content() async {
@@ -30,6 +29,7 @@ class _AddimageState extends State<Addimage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
       backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -54,8 +54,10 @@ class _AddimageState extends State<Addimage> {
                 child: TextField(
                   maxLines: null,
                   controller: controller,
-                  maxLength: 300,
+                  maxLength: 520,
                   decoration: InputDecoration(
+                    hintText: "每个瞬间我都想多爱你一些",
+                    hintStyle: TextStyle(fontFamily: 'hy',color: Colors.grey),
                     suffixIcon: IconButton(
                         onPressed: () {
                           controller.clear();
@@ -85,10 +87,9 @@ class _AddimageState extends State<Addimage> {
                           content = controller.text;
                           list.add(content);
                         });
-
-                        print("dddddddddddddddddddddddddddddddddddddddddd");
                         await _settext();
-
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        await Future.delayed(Duration(milliseconds: 200));
                         Navigator.of(context).pop();
                       },
                       icon: Icon(Icons.done)),

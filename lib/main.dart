@@ -19,7 +19,7 @@ void main() async{
 
 Future<int?> IsLogIn () async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  int? a=prefs.getInt('login');
+  int? a=await prefs.getInt('login');
   return a;
 }
 
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   // This widget is the root of your application.
+
   @override
 
   Widget build(BuildContext context) {

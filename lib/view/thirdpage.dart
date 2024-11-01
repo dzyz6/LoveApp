@@ -17,7 +17,8 @@ class _ThirdpageState extends State<Thirdpage> {
     return Container(
       decoration: BoxDecoration(
          // gradient: LinearGradient(colors:[Color(0xFFFDE9C1),Color(0xFFFDE9Cc),] ,begin: Alignment.bottomCenter,end: Alignment.topCenter)
-          color: Color(0xFFF6F6F6)
+         //  color: Color(0xFFF6F6F6)
+        image: DecorationImage(image: AssetImage('lib/common/image/20220918090631_400bf.jpeg'),fit: BoxFit.cover)
       ),
       child: Scaffold(
         appBar: AppBar(
@@ -65,7 +66,7 @@ class _BodyContentState extends State<BodyContent> {
                         _offstage=false;
                         _list=0;
                     });
-                  }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                  }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 105.w,
                 left:80.h,
               ),///独山子
@@ -77,7 +78,7 @@ class _BodyContentState extends State<BodyContent> {
                     _offstage=false;
 
                   });
-                }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 260.w,
                 left: 268.h,
               ),///长沙
@@ -87,7 +88,7 @@ class _BodyContentState extends State<BodyContent> {
                     _offstage=false;
                     _list=2;
                   });
-                }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 235.w,
                 left: 255.h,
               ),///宜昌
@@ -97,7 +98,7 @@ class _BodyContentState extends State<BodyContent> {
                     _offstage=false;
                     _list=3;
                   });
-                }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 153.w,
                 left: 293.h,
               ),///天津
@@ -107,7 +108,7 @@ class _BodyContentState extends State<BodyContent> {
                     _offstage=false;
                     _list=4;
                   });
-                }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 203.w,
                 left: 235.h,
               ),///西安
@@ -117,7 +118,7 @@ class _BodyContentState extends State<BodyContent> {
                     _offstage=false;
                     _list=5;
                   });
-                }, icon: Icon(Icons.circle,color: Colors.redAccent,size: 8.w,))),
+                }, icon: Icon(Icons.circle,color: Colors.yellow,size: 8.w,))),
                 top: 255.w,
                 left: 250.h,
               ),///张家界
@@ -218,7 +219,7 @@ class BoxImg extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 0.05.w,),
-                color: Colors.white,
+                color: Color(0xffe3dc7d),
                 borderRadius: BorderRadius.all(Radius.circular(20.r))
             ),
             width: 270.h,
