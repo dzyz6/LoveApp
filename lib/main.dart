@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled5/view/Middle.dart';
 import 'package:untitled5/view/letter.dart';
 import 'common/public_provider.dart';
 import 'view/home_page.dart';
@@ -17,17 +18,11 @@ void main() async{
   ));
 }
 
-Future<int?> IsLogIn () async{
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  int? a=await prefs.getInt('login');
-  return a;
-}
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   // This widget is the root of your application.
-
   @override
 
   Widget build(BuildContext context) {
@@ -41,7 +36,7 @@ class MyApp extends StatelessWidget {
             highlightColor: Color.fromRGBO(0, 0, 0, 0),
             splashColor: Color.fromRGBO(0, 0, 0, 0)
           ),
-          home: IsLogIn()!=1&&IsLogIn()!=2?Letter():MyHomePage(),
+          home: Middle(),
         ),
       ),
     );
